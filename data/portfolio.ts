@@ -21,9 +21,32 @@ export type Project = {
   facts: string[];
   featured?: boolean;
   liveUrl?: string;
+  platformLinks?: Array<{
+    label: string;
+    url?: string;
+    status?: string;
+  }>;
   placeholders: MediaPlaceholder[];
   sections: CaseSection[];
 };
+
+export const profileLinks = {
+  email: {
+    label: 'Email',
+    value: '2386473063@qq.com',
+    url: 'mailto:2386473063@qq.com',
+  },
+  github: {
+    label: 'GitHub',
+    value: 'halobaby0917-maker',
+    url: 'https://github.com/halobaby0917-maker',
+  },
+  xiaohongshu: {
+    label: 'Xiaohongshu',
+    value: '麻辣辣007',
+    url: 'https://xhslink.cn/o/1DeFXOwRHUi',
+  },
+} as const;
 
 export const projects: Project[] = [
   {
@@ -227,9 +250,14 @@ export const projects: Project[] = [
     tags: ['Growth', 'Content Product', 'User Insight'],
     summary: '把街访当作内容产品持续迭代，形成可重复的用户洞察与增长模型。',
     cardNote: 'Audience clarity turned content into a repeatable system.',
-    facts: ['半年 27K+ 粉 · 累计约 900K 点赞', '46 集街访 · 10+ 百万级作品', '单条最高约 300K 赞 / 11.44M 播放'],
+    facts: ['历史增长峰值：27K+ 跨平台粉丝', '46 集街访 · 10+ 百万级作品', '单条最高约 300K 赞 / 11.44M 播放'],
+    platformLinks: [
+      { label: 'Xiaohongshu', url: profileLinks.xiaohongshu.url },
+      { label: 'Douyin', status: 'Link coming soon' },
+      { label: 'WeChat Channels', status: 'Link coming soon' },
+    ],
     placeholders: [
-      { label: 'Metrics', description: '建议放账号增长曲线与代表作品数据' },
+      { label: 'Metrics', description: '建议放跨平台增长曲线与代表作品数据' },
       { label: 'Content System', description: '建议放选题、人物、剪辑、分发迭代框架' },
       { label: 'Social Feedback', description: '建议放高质量评论与用户共鸣截图' },
       { label: 'Content Samples', description: '建议放 3–5 条代表街访封面' },
@@ -239,7 +267,7 @@ export const projects: Project[] = [
       { title: 'Audience', intro: '将核心受众聚焦到 18–24 岁女性，围绕她们对关系、自我与现实选择的关注设计街访问答。' },
       { title: 'Strategy', bullets: ['从单点摄影内容重新定义为可持续的街访栏目', '让问题设计同时具备真实感、代入感和讨论空间', '通过统一栏目结构形成用户预期', '把平台反馈纳入下一轮选题与制作判断'] },
       { title: 'Experiments', bullets: ['持续迭代问题设计与人物选择', '测试不同剪辑节奏与信息密度', '优化标题、配乐和封面表达', '针对平台语境调整内容分发方式'] },
-      { title: 'Results', bullets: ['2 个月突破 20K 粉丝，后累计 27K+', '完成 46 集街访，累计约 900K 点赞', '单条最高约 300K 点赞、约 11.44M 播放', '产出 10+ 个百万级传播作品'] },
+      { title: 'Results', bullets: ['2 个月突破 20K 粉丝；历史增长峰值为小红书、抖音与微信视频号合计 27K+，当前平台数据后续可更新', '完成 46 集街访，累计约 900K 点赞', '单条最高约 300K 点赞、约 11.44M 播放', '产出 10+ 个百万级传播作品'] },
       { title: 'What I Learned', intro: '内容增长和产品增长共享同一逻辑：清楚为谁解决什么需求，快速实验，再把有效判断沉淀成可重复系统。' },
     ],
   },
@@ -281,7 +309,7 @@ export const processSteps = [
 export const profileMetrics = [
   { value: '6', label: 'AI Hackathons' },
   { value: '4', label: 'Awards' },
-  { value: '27K+', label: 'Followers' },
+  { value: 'Grew to 27K+', label: 'cross-platform followers' },
   { value: '11.44M', label: 'Peak Views' },
 ];
 

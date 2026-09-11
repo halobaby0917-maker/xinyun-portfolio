@@ -26,6 +26,19 @@ export function ProjectCard({ project }: { project: Project }) {
           <ul className="project-facts">
             {project.facts.map((fact) => <li key={fact}>{fact}</li>)}
           </ul>
+          {project.platformLinks ? (
+            <div className="platform-links" aria-label={`${project.title} platform links`}>
+              {project.platformLinks.map((platform) => platform.url ? (
+                <a key={platform.label} href={platform.url} target="_blank" rel="noreferrer">
+                  <span>{platform.label}</span><small>Open ↗</small>
+                </a>
+              ) : (
+                <span key={platform.label} aria-disabled="true">
+                  <span>{platform.label}</span><small>{platform.status}</small>
+                </span>
+              ))}
+            </div>
+          ) : null}
           {project.liveUrl ? <p className="live-note">Open working product ↗</p> : null}
         </div>
         <MediaPlaceholder item={project.placeholders[0]} index={0} dark={project.featured} />

@@ -355,6 +355,26 @@ ul { padding: 0; list-style: none; }
 
 .project-facts li { padding-block: 9px; border-top: 1px solid currentColor; }
 
+.platform-links {
+  margin-top: 26px;
+  border-top: 1px solid var(--line);
+}
+
+.platform-links > a,
+.platform-links > span {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  padding-block: 9px;
+  border-bottom: 1px solid var(--line);
+  font-size: 11px;
+}
+
+.platform-links > a:hover span { text-decoration: underline; text-underline-offset: 4px; }
+.platform-links small { color: var(--ink-soft); font-size: 9px; }
+.platform-links > span { color: var(--ink-soft); }
+
 .live-note {
   margin-top: 28px;
   color: var(--signal);
@@ -490,7 +510,7 @@ a:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
 @media (max-width: 760px) {
   :root { --header-height: 56px; }
   .site-shell { width: min(100% - 28px, 1240px); }
-  .site-nav { gap: 18px; }
+  .site-nav { gap: 16px; }
   .site-nav a { font-size: 9px; }
   .hero-inner { padding-top: 0; }
   .hero-status { display: none; }

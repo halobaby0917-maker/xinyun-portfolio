@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { ProjectCard } from '@/components/project-card';
 import { SiteFooter } from '@/components/site-footer';
 import { SiteHeader } from '@/components/site-header';
-import { profileMetrics, projects } from '@/data/portfolio';
+import { profileLinks, profileMetrics, projects } from '@/data/portfolio';
 
 const primaryProjects = [projects[0], projects[1], projects[4]];
 const moreProjects = [projects[2], projects[3], projects[5]];
@@ -36,7 +36,7 @@ export default function Home() {
               <div className="hero-actions" aria-label="Primary actions">
                 <Link className="action-link action-link-primary" href="#work">View Selected Work <span aria-hidden="true">↓</span></Link>
                 <a className="action-link" href="https://dbti-test.pages.dev/" target="_blank" rel="noreferrer">DBTI Live ↗</a>
-                <a className="action-link" href="mailto:2386473063@qq.com">Email ↗</a>
+                <a className="action-link" href={profileLinks.email.url}>Email ↗</a>
               </div>
             </div>
             <dl className="metrics-strip">

@@ -1,3 +1,5 @@
+import { profileLinks } from '@/data/portfolio';
+
 export function SiteFooter() {
   return (
     <footer id="contact" className="contact-section">
@@ -8,11 +10,15 @@ export function SiteFooter() {
           <div className="contact-panel">
             <p>AI Product、Growth、GTM 或 Founder Associate 机会，欢迎联系。</p>
             <div className="contact-links">
-              <a href="mailto:2386473063@qq.com">
-                <strong>Email</strong><small>2386473063@qq.com ↗</small>
+              <a href={profileLinks.email.url}>
+                <strong>{profileLinks.email.label}</strong><small>{profileLinks.email.value} ↗</small>
               </a>
-              <span><strong>GitHub</strong><small>Link coming soon</small></span>
-              <span><strong>小红书</strong><small>Reserved</small></span>
+              <a href={profileLinks.github.url} target="_blank" rel="noreferrer">
+                <strong>{profileLinks.github.label}</strong><small>{profileLinks.github.value} ↗</small>
+              </a>
+              <a href={profileLinks.xiaohongshu.url} target="_blank" rel="noreferrer">
+                <strong>{profileLinks.xiaohongshu.label}</strong><small>{profileLinks.xiaohongshu.value} ↗</small>
+              </a>
             </div>
           </div>
         </div>

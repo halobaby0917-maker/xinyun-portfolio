@@ -46,7 +46,8 @@ public/
 
 - 项目文字、数据、标签和素材建议统一维护在 `data/portfolio.ts`。
 - DBTI 已连接真实产品：<https://dbti-test.pages.dev/>。
-- GitHub 与小红书链接目前为占位；获得正式地址后在 `components/site-footer.tsx` 中替换。
+- Email、GitHub 与社交平台链接统一维护在 `data/portfolio.ts` 的 `profileLinks` 中。
+- 麻辣辣007 已接入小红书；抖音与微信视频号保留入口，获得正式地址后在 `platformLinks` 中补充。
 - 素材占位不会影响布局。替换时建议保持项目卡中的横向画面比例。
 
 ## Deployment
