@@ -1,15 +1,15 @@
 # Xinyun Leung — AI Product × Growth
 
-梁馨匀的产品与增长作品集。当前公开版本聚焦招聘方最需要快速确认的三件事：能从用户问题出发、能独立做出 MVP、能通过真实用户和市场反馈验证结果。
+梁馨匀的 AI 产品与增长作品集。网站面向 AI Product、AI Growth、GTM 与 Founder Associate 求职场景，以产品案例和真实增长结果呈现从用户洞察、MVP 构建到市场验证的工作方式。
 
 ## Tech Stack
 
 - TypeScript + React 19
 - Vinext（Vite 驱动、兼容 Next App Router 的静态站点框架）
 - Tailwind CSS 4（基础工具链）
-- Cloudflare Workers-compatible output via OpenAI Sites
+- Cloudflare Workers-compatible build output
 
-当前环境使用 Vinext，而不是标准 Next.js：它保留熟悉的 `app/` 路由与 Metadata API，同时能直接生成当前托管环境需要的产物。网站无后端、无数据库、无运行时外部 API 依赖。
+项目使用 Vinext，而不是标准 Next.js：它保留 `app/` 路由与 Metadata API，并通过 Cloudflare Vite 插件生成 Worker 与静态资源。网站无数据库、无运行时外部 API 依赖。
 
 ## Local Development
 
@@ -18,7 +18,7 @@ npm install
 npm run dev
 ```
 
-生产构建：
+## Build
 
 ```bash
 npm run build
@@ -52,4 +52,18 @@ public/
 
 ## Deployment
 
-项目已配置 `.openai/hosting.json`，可通过 OpenAI Sites 构建并发布。后续迭代继续使用同一项目即可保持公开 URL 不变。
+`npm run build` 会生成：
+
+- `dist/server/index.js`：Cloudflare Worker 入口
+- `dist/server/wrangler.json`：构建后的 Worker 配置
+- `dist/client`：浏览器端静态资源
+
+当前产物是带 Worker 入口的 Vinext 应用，不是包含顶层 `index.html` 的纯静态 Pages 目录。推荐使用 Cloudflare Workers Builds 连接本仓库：
+
+- Production branch：`main`
+- Build command：`npm run build`
+- Deploy command：`npx wrangler deploy --config dist/server/wrangler.json`
+- Root directory：留空（仓库根目录）
+- Environment variables：无需配置
+
+直接将 `dist` 或 `dist/client` 作为 Cloudflare Pages 的 Build output directory 会遗漏当前应用所需的 Worker 运行入口，因此不应这样配置。
