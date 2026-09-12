@@ -7,9 +7,9 @@
 - TypeScript + React 19
 - Vinext（Vite 驱动、兼容 Next App Router 的静态站点框架）
 - Tailwind CSS 4（基础工具链）
-- Cloudflare Workers-compatible build output
+- Cloudflare Pages-compatible static export
 
-项目使用 Vinext，而不是标准 Next.js：它保留 `app/` 路由与 Metadata API，并通过 Cloudflare Vite 插件生成 Worker 与静态资源。网站无数据库、无运行时外部 API 依赖。
+项目使用 Vinext 保留 `app/` 路由与 Metadata API，并通过 `output: 'export'` 在构建阶段预渲染全部路由。网站无 SSR、数据库、服务端 API 或运行时环境变量依赖。
 
 ## Local Development
 
@@ -23,6 +23,8 @@ npm run dev
 ```bash
 npm run build
 ```
+
+静态站点输出到 `dist/client`，其中包含顶层 `index.html`、`404.html`、页面数据与浏览器端资源。
 
 ## Portfolio Structure
 
@@ -52,18 +54,10 @@ public/
 
 ## Deployment
 
-`npm run build` 会生成：
-
-- `dist/server/index.js`：Cloudflare Worker 入口
-- `dist/server/wrangler.json`：构建后的 Worker 配置
-- `dist/client`：浏览器端静态资源
-
-当前产物是带 Worker 入口的 Vinext 应用，不是包含顶层 `index.html` 的纯静态 Pages 目录。推荐使用 Cloudflare Workers Builds 连接本仓库：
+Cloudflare Pages 连接本仓库后使用以下配置：
 
 - Production branch：`main`
 - Build command：`npm run build`
-- Deploy command：`npx wrangler deploy --config dist/server/wrangler.json`
+- Build output directory：`dist/client`
 - Root directory：留空（仓库根目录）
 - Environment variables：无需配置
-
-直接将 `dist` 或 `dist/client` 作为 Cloudflare Pages 的 Build output directory 会遗漏当前应用所需的 Worker 运行入口，因此不应这样配置。
